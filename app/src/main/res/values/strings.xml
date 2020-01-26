@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyGithub</string>
     <string name="userSearchHint">Введите имя пользователя</string>
+    <string name="toolbarName">Поиск пользователя</string>
 </resources>
