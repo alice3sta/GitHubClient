@@ -3,15 +3,15 @@ package com.example.mygithub
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
 class UserAdapter(val users: List<UserInfo>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user_info, parent)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user_info, parent,false)
         return ViewHolder(itemView)
     }
 
@@ -28,8 +28,8 @@ class UserAdapter(val users: List<UserInfo>) : RecyclerView.Adapter<UserAdapter.
 
     class ViewHolder(val recyclerItemView: View) : RecyclerView.ViewHolder(recyclerItemView) {
         val userAvatar = recyclerItemView.findViewById<ImageView>(R.id.user_avatar)
-        val userLogin = recyclerItemView.findViewById<EditText>(R.id.user_login)
-        val userId = recyclerItemView.findViewById<EditText>(R.id.user_id)
+        val userLogin = recyclerItemView.findViewById<TextView>(R.id.user_login)
+        val userId = recyclerItemView.findViewById<TextView>(R.id.user_id)
     }
 }
 

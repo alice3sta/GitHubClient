@@ -10,10 +10,10 @@ class UserScreenPresenter(
     fun onSearchQueryChanged() {
         val searchQuery = view.getSearchQuery()
         interactor.getUsers(searchQuery)
-            .unsubscribeOn(Schedulers.io())
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                view.showUsers()
+                view.showUsers(it)
             }, {
                 view.showError()
             })
