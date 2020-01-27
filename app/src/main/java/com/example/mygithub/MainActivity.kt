@@ -1,6 +1,7 @@
 package com.example.mygithub
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,16 +17,34 @@ class MainActivity : AppCompatActivity(), UserScreenView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val presenter = UserScreenPresenter(this, UserScreenInteractorImpl(UserScreenRepoImpl()))
 
         RxTextView.afterTextChangeEvents(user_search)
             .skipInitialValue()
+            .doOnNext {
+                presenter.onDataStartedToChange()
+            }
             .debounce(700, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 presenter.onSearchQueryChanged()
             }
+    }
+
+    override fun showProgress() {
+        progress_bar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        progress_bar.visibility = View.GONE
+    }
+
+    override fun hideUserList() {
+        user_list.visibility = View.INVISIBLE
+    }
+
+    override fun showUserList() {
+        user_list.visibility = View.VISIBLE
     }
 
     override fun showUsers(listUser: List<UserInfo>) {

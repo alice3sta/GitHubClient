@@ -13,9 +13,17 @@ class UserScreenPresenter(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                view.hideProgress()
+                view.showUserList()
                 view.showUsers(it)
             }, {
+                view.hideProgress()
                 view.showError()
             })
+    }
+
+    fun onDataStartedToChange() {
+        view.hideUserList()
+        view.showProgress()
     }
 }
