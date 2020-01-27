@@ -8,5 +8,6 @@ interface UserScreenView {
     fun showProgress()
     fun hideUserList()
     fun showUserList()
+    fun showUserNotFound()
 }
 

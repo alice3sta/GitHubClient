@@ -14,8 +14,13 @@ class UserScreenPresenter(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 view.hideProgress()
-                view.showUserList()
-                view.showUsers(it)
+                if (it.isEmpty()) {
+                    view.hideUserList()
+                   view.showUserNotFound()
+                } else {
+                    view.showUserList()
+                    view.showUsers(it)
+                }
             }, {
                 view.hideProgress()
                 view.showError()

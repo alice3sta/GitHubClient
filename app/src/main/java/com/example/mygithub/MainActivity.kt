@@ -2,7 +2,6 @@ package com.example.mygithub
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -32,11 +31,15 @@ class MainActivity : AppCompatActivity(), UserScreenView {
     }
 
     override fun showProgress() {
-        progress_bar.visibility = View.VISIBLE
+        image_user_found.visibility = View.VISIBLE
+        image_user_found.setImageResource(R.drawable.search)
+        text_user_found.visibility = View.VISIBLE
+        text_user_found.setText(R.string.user_found_progress)
     }
 
     override fun hideProgress() {
-        progress_bar.visibility = View.GONE
+        image_user_found.visibility = View.GONE
+        text_user_found.visibility = View.GONE
     }
 
     override fun hideUserList() {
@@ -54,7 +57,17 @@ class MainActivity : AppCompatActivity(), UserScreenView {
     }
 
     override fun showError() {
-        Toast.makeText(this, "Ошибка поиска", Toast.LENGTH_LONG).show()
+        text_user_found.visibility = View.VISIBLE
+        text_user_found.setText(R.string.error_search)
+        image_user_found.visibility = View.VISIBLE
+        image_user_found.setImageResource(R.drawable.skull)
+    }
+
+    override fun showUserNotFound() {
+        image_user_found.visibility = View.VISIBLE
+        image_user_found.setImageResource(R.drawable.face)
+        text_user_found.visibility = View.VISIBLE
+        text_user_found.setText(R.string.user_not_found)
     }
 
     override fun getSearchQuery(): String {
