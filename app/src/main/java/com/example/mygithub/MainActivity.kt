@@ -1,5 +1,6 @@
 package com.example.mygithub
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -51,7 +52,13 @@ class MainActivity : AppCompatActivity(), UserScreenView {
     }
 
     override fun showUsers(listUser: List<UserInfo>) {
-        user_list.adapter = UserAdapter(listUser)
+        user_list.adapter = UserAdapter(listUser, object : UserAdapter.OnItemClicked {
+            override fun onItemClicked(position: Int) {
+                val intent = Intent(this@MainActivity, UserInfoActivity::class.java)
+                    .putExtra( "User", listUser.get(position))
+                startActivity(intent)
+            }
+        })
         user_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         user_list.setHasFixedSize(true)
     }

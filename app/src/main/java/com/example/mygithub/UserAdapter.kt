@@ -8,7 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 
-class UserAdapter(val users: List<UserInfo>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(val users: List<UserInfo>, val onClickListener : OnItemClicked) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+
+    interface OnItemClicked {
+        fun onItemClicked(position: Int)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user_info, parent,false)
@@ -24,6 +28,10 @@ class UserAdapter(val users: List<UserInfo>) : RecyclerView.Adapter<UserAdapter.
         holder.userLogin.setText(user.userLogin)
         holder.userId.setText(user.userId.toString())
         Picasso.get().load(user.userAvatar).into(holder.userAvatar)
+
+        holder.recyclerItemView.setOnClickListener {
+            onClickListener.onItemClicked(position)
+        }
     }
 
     class ViewHolder(val recyclerItemView: View) : RecyclerView.ViewHolder(recyclerItemView) {

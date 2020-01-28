@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UserInfoActivity">
+
+    <TextView
+        android:id="@+id/user_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="67578" />
+
+    <TextView
+        android:id="@+id/user_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="36dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_id"
+        tools:text="Anna" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <ImageView
+        android:id="@+id/user_avatar"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars[14]" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
