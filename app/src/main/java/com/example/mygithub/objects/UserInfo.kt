@@ -1,4 +1,4 @@
-package com.example.mygithub
+package com.example.mygithub.objects
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
