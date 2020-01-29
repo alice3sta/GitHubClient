@@ -5,4 +5,8 @@
     <string name="user_found_progress">Идет поиск...</string>
     <string name="user_not_found">Пользователь не найден</string>
     <string name="error_search">Ошибка поиска</string>
+    <string name="user_id_text">id: %1$d</string>
+    <string name="name_text">name: %1$s</string>
+    <string name="location_text">location: %1$s</string>
+    <string name="public_repos_text">public Repos: %1$d</string>
 </resources>
