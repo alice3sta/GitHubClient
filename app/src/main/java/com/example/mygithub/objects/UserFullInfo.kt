@@ -8,6 +8,6 @@ class UserFullInfo(
     @SerializedName("avatar_url") val userAvatar: String,
     @SerializedName("name") val userName: String,
     @SerializedName("public_repos") val publicRepos: Int,
-    @SerializedName("location") val location: String,
+    @SerializedName("location") val location: String?,
     @SerializedName("created_at") val createdAt: String = ""
 )

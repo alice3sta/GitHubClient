@@ -6,9 +6,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mygithub.*
-import com.example.mygithub.user_full_info.UserInfoActivity
+import com.example.mygithub.R
 import com.example.mygithub.objects.UserInfo
+import com.example.mygithub.user_full_info.UserInfoActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_main.*
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), UserScreenView {
 
     override fun showProgress() {
         image_user_found.visibility = View.VISIBLE
-        image_user_found.setImageResource(R.drawable.search)
+        image_user_found.setImageResource(R.drawable.searchman)
         text_user_found.visibility = View.VISIBLE
         text_user_found.setText(R.string.user_found_progress)
     }
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity(), UserScreenView {
         user_list.adapter = UserAdapter(listUser, object : UserAdapter.OnItemClicked {
             override fun onItemClicked(position: Int) {
                 val intent = Intent(this@MainActivity, UserInfoActivity::class.java)
-                    .putExtra( "User", listUser.get(position))
+                    .putExtra("User", listUser.get(position))
                 startActivity(intent)
             }
         })

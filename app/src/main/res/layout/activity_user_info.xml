@@ -94,4 +94,29 @@
         app:layout_constraintTop_toBottomOf="@+id/user_location"
         tools:text="@string/public_repos_text" />
 
+    <TextView
+        android:id="@+id/error_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        tools:visibility="visible"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_login"
+        tools:text="Произошла ошибка\nПопробуйте позже" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_login" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
