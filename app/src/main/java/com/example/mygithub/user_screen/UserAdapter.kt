@@ -1,4 +1,4 @@
-package com.example.mygithub
+package com.example.mygithub.user_screen
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,16 +6,20 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mygithub.R
+import com.example.mygithub.objects.UserInfo
 import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
-class UserAdapter(val users: List<UserInfo>, val onClickListener : OnItemClicked) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(val users: List<UserInfo>, val onClickListener: OnItemClicked) :
+    RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     interface OnItemClicked {
         fun onItemClicked(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user_info, parent,false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_user_info, parent, false)
         return ViewHolder(itemView)
     }
 
@@ -24,10 +28,11 @@ class UserAdapter(val users: List<UserInfo>, val onClickListener : OnItemClicked
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val context = holder.recyclerItemView.context
         val user = users.get(position)
-        holder.userLogin.setText(user.userLogin)
-        holder.userId.setText(user.userId.toString())
-        Picasso.get().load(user.userAvatar).into(holder.userAvatar)
+        holder.userLogin.text = user.userLogin
+        holder.userId.text = context.getString(R.string.user_id_text, user.userId)
+        Picasso.get().load(user.userAvatar).transform(CropCircleTransformation()).into(holder.userAvatar)
 
         holder.recyclerItemView.setOnClickListener {
             onClickListener.onItemClicked(position)

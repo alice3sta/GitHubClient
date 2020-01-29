@@ -1,6 +1,7 @@
-package com.example.mygithub
+package com.example.mygithub.user_screen
 
 import com.example.mygithub.network.DataUserApi
+import com.example.mygithub.objects.UserInfo
 import io.reactivex.Observable
 
 

@@ -1,4 +1,6 @@
-package com.example.mygithub
+package com.example.mygithub.user_screen
+
+import com.example.mygithub.objects.UserInfo
 
 interface UserScreenView {
     fun getSearchQuery(): String

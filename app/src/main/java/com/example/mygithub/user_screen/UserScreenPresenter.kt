@@ -1,4 +1,4 @@
-package com.example.mygithub
+package com.example.mygithub.user_screen
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
