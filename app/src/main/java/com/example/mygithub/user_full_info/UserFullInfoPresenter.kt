@@ -5,10 +5,8 @@ import io.reactivex.schedulers.Schedulers
 
 class UserFullInfoPresenter(val view: UserFullInfoView, val interactor: UserFullInfoInteractor) {
     fun getFullUserInfo(name: String) {
+        view.showProgress()
         interactor.getFullUserInfo(name)
-            .doOnNext {
-                view.showProgress()
-            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
