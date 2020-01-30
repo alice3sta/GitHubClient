@@ -29,8 +29,8 @@ class UserInfoActivity : AppCompatActivity(), UserFullInfoView {
     }
 
     override fun showFullUserInfo(userFullInfo: UserFullInfo) {
-        user_name.text = getString(R.string.name_text, userFullInfo.userName)
-        user_location.text = getString(R.string.location_text, userFullInfo.location ?: "-")
+        user_name.text = getString(R.string.name_text, userFullInfo.userName ?: getString(R.string.emptyname))
+        user_location.text = getString(R.string.location_text, userFullInfo.location ?: getString(R.string.emptyname))
         user_public_repos.text = getString(R.string.public_repos_text, userFullInfo.publicRepos)
     }
 
