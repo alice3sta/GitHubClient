@@ -10,4 +10,5 @@
     <string name="location_text">location: %1$s</string>
     <string name="public_repos_text">public Repos: %1$d</string>
     <string name="emptyname">Не указано</string>
+    <string name="error_userdata">Произошла ошибка \nПопробуйте позже</string>
 </resources>
