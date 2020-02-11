@@ -5,9 +5,9 @@ import com.example.mygithub.objects.UserInfo
 import io.reactivex.Observable
 
 
-class UserScreenRepoImpl : UserScreenRepo {
+class UserScreenRepoImpl(private val dataUserApi: DataUserApi) : UserScreenRepo {
     override fun getUsers(userName: String): Observable<List<UserInfo>> {
-        return DataUserApi().getApi().getUserInfo(userName).map {
+        return dataUserApi.getApi().getUserInfo(userName).map {
             it.userList
         }
     }

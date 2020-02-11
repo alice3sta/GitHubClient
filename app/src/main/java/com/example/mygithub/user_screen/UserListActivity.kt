@@ -7,22 +7,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mygithub.R
+import com.example.mygithub.network.DataUserApi
 import com.example.mygithub.objects.UserInfo
 import com.example.mygithub.user_full_info.UserInfoActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
 
-class MainActivity : AppCompatActivity(), UserScreenView {
+class UserListActivity : AppCompatActivity(), UserScreenView {
+
+    lateinit var presenter: UserScreenPresenter
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val presenter = UserScreenPresenter(this, UserScreenInteractorImpl(UserScreenRepoImpl()))
+        presenter = UserScreenPresenter(this, UserScreenInteractorImpl(UserScreenRepoImpl(DataUserApi())))
 
-        RxTextView.afterTextChangeEvents(user_search)
+        val disposable = RxTextView.afterTextChangeEvents(user_search)
             .skipInitialValue()
             .doOnNext {
                 presenter.onDataStartedToChange()
@@ -32,6 +37,14 @@ class MainActivity : AppCompatActivity(), UserScreenView {
             .subscribe {
                 presenter.onSearchQueryChanged()
             }
+
+        compositeDisposable.add(disposable)
+    }
+
+    override fun onDestroy() {
+        presenter.clear()
+        compositeDisposable.clear()
+        super.onDestroy()
     }
 
     override fun showProgress() {
@@ -57,8 +70,7 @@ class MainActivity : AppCompatActivity(), UserScreenView {
     override fun showUsers(listUser: List<UserInfo>) {
         user_list.adapter = UserAdapter(listUser, object : UserAdapter.OnItemClicked {
             override fun onItemClicked(position: Int) {
-                val intent = Intent(this@MainActivity, UserInfoActivity::class.java)
-                    .putExtra("User", listUser.get(position))
+                val intent = Intent(this@UserListActivity, UserInfoActivity::class.java).putExtra("User", listUser.get(position))
                 startActivity(intent)
             }
         })

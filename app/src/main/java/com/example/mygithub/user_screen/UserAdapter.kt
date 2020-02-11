@@ -11,7 +11,7 @@ import com.example.mygithub.objects.UserInfo
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
-class UserAdapter(val users: List<UserInfo>, val onClickListener: OnItemClicked) :
+class UserAdapter(private val users: List<UserInfo>, private val onClickListener: OnItemClicked) :
     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     interface OnItemClicked {

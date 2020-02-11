@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_user_info.*
 
 class UserInfoActivity : AppCompatActivity(), UserFullInfoView {
 
-    val presenter = UserFullInfoPresenter(this, UserFullInfoInteractorImpl(UserFullInfoRepoImpl()))
+    private val presenter = UserFullInfoPresenter(this, UserFullInfoInteractorImpl(UserFullInfoRepoImpl()))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

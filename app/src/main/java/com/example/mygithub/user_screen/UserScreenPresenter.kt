@@ -1,15 +1,16 @@
 package com.example.mygithub.user_screen
 
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class UserScreenPresenter(
-    val view: UserScreenView,
-    val interactor: UserScreenInteractor
-) {
+class UserScreenPresenter(private val view: UserScreenView, private val interactor: UserScreenInteractor) {
+
+    private val compositeDisposable = CompositeDisposable()
+
     fun onSearchQueryChanged() {
         val searchQuery = view.getSearchQuery()
-        interactor.getUsers(searchQuery)
+        val disposable = interactor.getUsers(searchQuery)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -25,10 +26,16 @@ class UserScreenPresenter(
                 view.hideProgress()
                 view.showError()
             })
+
+        compositeDisposable.add(disposable)
     }
 
     fun onDataStartedToChange() {
         view.hideUserList()
         view.showProgress()
+    }
+
+    fun clear() {
+        compositeDisposable.dispose()
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user_screen.MainActivity">
+    tools:context=".user_screen.UserListActivity">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -42,8 +42,11 @@
     <EditText
         android:id="@+id/user_search"
         android:layout_width="0dp"
+        android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:paddingBottom="16dp"
         android:hint="@string/userSearchHint"
         android:singleLine="true"
         android:textSize="14sp"
@@ -61,6 +64,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_search"
         tools:listitem="@layout/item_user_info" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
