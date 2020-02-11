@@ -10,11 +10,12 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_user_info.*
 
 class UserInfoActivity : AppCompatActivity(), UserFullInfoView {
+
+    val presenter = UserFullInfoPresenter(this, UserFullInfoInteractorImpl(UserFullInfoRepoImpl()))
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
-
-        val presenter = UserFullInfoPresenter(this, UserFullInfoInteractorImpl(UserFullInfoRepoImpl()))
 
         val userList = intent.getSerializableExtra("User") as UserInfo
         user_id.text = getString(R.string.user_id_text, userList.userId)
@@ -40,5 +41,10 @@ class UserInfoActivity : AppCompatActivity(), UserFullInfoView {
 
     override fun showError() {
         error_search.visibility = View.VISIBLE
+    }
+
+    override fun onDestroy() {
+        presenter.clear()
+        super.onDestroy()
     }
 }
